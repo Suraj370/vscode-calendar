@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'none';
+                 script-src 'nonce-{{NONCE}}' {{CSP_SOURCE}};
+                 style-src 'unsafe-inline' {{CSP_SOURCE}};
+                 style-src-elem {{CSP_SOURCE}} 'unsafe-inline';
+                 img-src data:;">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VSCode Calendar</title>
+
+  <link rel="stylesheet" href="{{STYLE_URI}}">
+</head>
+<body>
+  <div id="root" class="root">
+    <div class="header">
+      <div class="nav">
+        <button id="prev" aria-label="Previous month">◀</button>
+        <strong id="monthLabel" aria-live="polite"></strong>
+        <button id="next" aria-label="Next month">▶</button>
+      </div>
+
+      <div class="actions">
+        <button id="newTask">+ New Task</button>
+        <button id="save">Save</button>
+      </div>
+    </div>
+
+    <div class="weekdays" role="row" aria-hidden="true">
+      <div role="columnheader">Sun</div>
+      <div role="columnheader">Mon</div>
+      <div role="columnheader">Tue</div>
+      <div role="columnheader">Wed</div>
+      <div role="columnheader">Thu</div>
+      <div role="columnheader">Fri</div>
+      <div role="columnheader">Sat</div>
+    </div>
+
+    <div id="calendar" class="calendar" role="grid" aria-label="Month calendar"></div>
+  </div>
+
+  <!-- Modal for add/edit task (includes time & reminder) -->
+  <div id="modal" class="modal" hidden>
+    <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">New Task</h3>
+
+      <div class="modal-row" style="display:flex; gap:8px; margin-bottom:8px; align-items:center;">
+        <select id="taskPriority" style="flex:1">
+          <option value="">Priority (none)</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+          <option value="low">Low</option>
+        </select>
+        <input id="taskColor" type="color" value="#3b82f6" title="Optional custom color" />
+      </div>
+
+      <input id="taskTitle" placeholder="Title" aria-label="Task title" />
+      <div style="display:flex; gap:8px;">
+        <input id="taskDate" type="date" aria-label="Task date" style="flex:1;" />
+        <input id="taskTime" type="time" aria-label="Task time" style="width:120px;" />
+      </div>
+
+      <div style="display:flex; gap:8px; align-items:center; margin-top:6px;">
+        <label style="font-size:12px; color:#666;">Reminder (minutes before):</label>
+        <input id="taskReminder" type="number" min="0" step="1" value="" placeholder="e.g. 10" style="width:88px;" />
+        <span style="font-size:12px; color:#999;">(leave empty for no reminder)</span>
+      </div>
+
+      <textarea id="taskNotes" placeholder="Notes" aria-label="Task notes" style="margin-top:8px;"></textarea>
+
+      <div class="modal-actions" style="display:flex; justify-content:space-between; gap:8px; align-items:center; margin-top:8px;">
+        <div>
+          <button id="deleteTaskBtn" style="background:#fff; border:1px solid #e74c3c; color:#e74c3c; display:none;">Delete</button>
+        </div>
+        <div>
+          <button id="cancel">Cancel</button>
+          <button id="saveTaskBtn">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Task inspector (context menu) -->
+  <div id="inspector" class="inspector" hidden>
+    <div id="inspectorTitle" class="inspector-title">Task</div>
+    <div class="inspector-actions">
+      <button id="inspectEdit">Edit</button>
+      <button id="inspectCopy">Copy details</button>
+      <button id="inspectDelete" style="color:#e74c3c;">Delete</button>
+    </div>
+  </div>
+
+  <script nonce="{{NONCE}}" src="{{SCRIPT_URI}}"></script>
+</body>
+</html>

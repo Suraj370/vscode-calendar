@@ -1,0 +1,56 @@
+{
+  "name": "vscode-calendar",
+  "displayName": "VSCode Calendar",
+  "publisher": "SurajPanda",
+  "version": "1.0.0",
+  "description": "Simple calendar inside VS Code to create and manage dated tasks",
+  "main": "./out/extensions.js",
+  "engines": {
+    "vscode": "^1.107.0"
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -w -p ./",
+    "package": "vsce package"
+  },
+  "activationEvents": [
+    "onCommand:vscalendar.openCalendar",
+    "onCommand:vscalendar.addQuickTask"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "vscalendar.openCalendar",
+        "title": "Open Calendar"
+      },
+      {
+        "command": "vscalendar.addQuickTask",
+        "title": "Add Quick Task (Calendar)"
+      }
+    ]
+  },
+  "categories": [
+    "Productivity",
+    "Other"
+  ],
+  "keywords": [
+    "calendar",
+    "tasks",
+    "todo",
+    "productivity",
+    "reminder"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SurajPanda/vscode-calendar.git"
+  },
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^25.0.0",
+    "@types/vscode": "^1.107.0",
+    "typescript": "^5.9.3",
+    "vsce": "^2.15.0"
+  }
+}
