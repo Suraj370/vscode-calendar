@@ -31,19 +31,17 @@
     ]
   },
   "categories": [
-    "Productivity",
     "Other"
   ],
   "keywords": [
     "calendar",
     "tasks",
     "todo",
-    "productivity",
     "reminder"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/SurajPanda/vscode-calendar.git"
+    "url": "https://github.com/Suraj370/vscode-calendar.git"
   },
   "license": "ISC",
   "type": "commonjs",
